@@ -1,0 +1,19 @@
+{
+  "name": "boostwave",
+  "private": true,
+  "version": "1.1.0",
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/copy-core.mjs",
+    "dev": "vite",
+    "prebuild": "node scripts/copy-core.mjs",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ffmpeg/core": "0.12.6",
+    "@ffmpeg/ffmpeg": "^0.12.10",
+    "@ffmpeg/util": "^0.12.1"
+  },
+  "devDependencies": { "typescript": "^5.5.0", "vite": "^5.4.0" }
+}

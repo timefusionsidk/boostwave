@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BoostWave – Make quiet media louder</title>
+</head><body>
+<header><div class="logo">BoostWave</div><div class="pill">Private by design. Your files never leave your device.</div></header>
+<main>
+<section id="up" class="card" role="button" tabindex="0" aria-label="Choose an audio or video file">
+<h1>Make quiet media louder</h1>
+<p>Upload an audio or video file and increase its volume without sending it anywhere.</p>
+<button class="btn" id="pickBtn" type="button">Choose Audio or Video</button>
+<div class="small" style="margin-top:12px">or drop a file here · MP3, WAV, M4A, AAC, OGG, FLAC, WEBM, MP4, MOV, MKV, M4V, AVI · Files below 500 MB are recommended</div>
+<ul class="pts"><li>Private browser processing</li><li>Audio and video support</li><li>Clipping protection</li><li>No account required</li></ul>
+</section>
+<input id="file" type="file" hidden accept="audio/*,video/*,.mp3,.wav,.m4a,.aac,.ogg,.oga,.flac,.webm,.mp4,.mov,.mkv,.m4v,.avi">
+<p class="note" id="note" hidden role="status"></p>
+<p class="small" id="limit">BoostWave increases the volume inside your audio or video file. It does not control your device’s system volume or other websites.</p>
+
+<section id="ed" hidden>
+<div class="card">
+ <div class="row sp"><div><strong id="fname"></strong> <span class="small" id="fmeta"></span></div>
+ <div class="row"><button class="btn ghost" id="replace" type="button">Replace file</button><button class="btn ghost" id="remove" type="button">Remove</button></div></div>
+ <div id="media" style="margin:14px 0 10px"></div>
+ <canvas id="wave" aria-label="Waveform. Click to seek."></canvas>
+ <div class="small" style="margin-top:4px">Gray: original · Green: boosted (gain preview; red = would clip without protection). Click to seek.</div>
+ <canvas id="meter" aria-label="Output level meter"></canvas>
+ <div class="row" style="margin-top:12px"><span class="small">Compare:</span>
+  <button class="btn ghost" id="abO" type="button" aria-pressed="false">Original</button>
+  <button class="btn ghost" id="abB" type="button" aria-pressed="true">Boosted</button></div>
+</div>
+<div class="card grid">
+ <div><label for="gain">Boost: <span id="gv">+6 dB</span></label><input id="gain" type="range" min="0" max="24" step="0.5" value="6">
+  <div class="row" style="margin-top:8px"><button class="btn ghost" id="auto" type="button" disabled>Auto boost</button><span class="small">Targets a comfortable average level</span></div></div>
+ <div><label>Preset</label><div class="row" id="pre">
+  <button class="btn ghost" data-p="boost" aria-pressed="true" type="button">Plain boost</button>
+  <button class="btn ghost" data-p="voice" aria-pressed="false" type="button">Voice clarity</button>
+  <button class="btn ghost" data-p="balance" aria-pressed="false" type="button">Balance</button></div>
+  <div class="small" style="margin-top:6px">Voice clarity cuts rumble and lifts speech. Balance evens out loud and quiet parts.</div></div>
+ <div><label><input type="checkbox" id="clip" checked style="width:auto"> Clipping protection</label><div class="small">Adds a limiter live and checks the exported peak.</div>
+  <label for="ch" style="margin-top:12px">Channels</label><select id="ch"><option value="0">Keep original</option><option value="1">Mono (combine channels)</option></select></div>
+ <div><label>Trim (seconds)</label><div class="row" style="flex-wrap:nowrap"><input type="number" id="ts" min="0" step="0.1" aria-label="Start"><input type="number" id="te" min="0" step="0.1" aria-label="End"></div>
+  <div class="row" style="margin-top:8px"><button class="btn ghost" id="setS" type="button">Start = now</button><button class="btn ghost" id="setE" type="button">End = now</button><button class="btn ghost" id="rst" type="button">Reset</button></div></div>
+</div>
+<div class="card">
+ <div class="grid"><div><label for="fm">Export format</label><select id="fm"><option value="mp3">MP3</option><option value="m4a">M4A (AAC)</option><option value="ogg">OGG (Vorbis)</option><option value="flac">FLAC</option><option value="wav">WAV (lossless)</option><option value="mp4" data-v>MP4 video (H.264/AAC)</option><option value="webm" data-v>WEBM video</option></select></div>
+ <div><label for="kb">MP3 / M4A bitrate (kbps)</label><select id="kb"><option>128</option><option selected>192</option><option>320</option></select></div></div>
+ <p class="small">Video files can export as MP4 or WEBM with boosted sound, or as audio only. Everything is processed on this device.</p>
+ <div class="row"><button class="btn" id="go" type="button" disabled>Export</button><button class="btn ghost" id="cancel" type="button" hidden>Cancel</button></div>
+ <div id="prog" hidden style="margin-top:12px"><progress id="pg" max="1" value="0"></progress><div class="small" id="pt"></div></div>
+ <div id="res" hidden style="margin-top:14px"><div class="big">Ready</div><p class="small" id="rs"></p><a class="btn" id="dl">Download</a></div>
+</div>
+</section>
+<aside id="ad" hidden aria-label="Advertisement" style="margin:16px 0"></aside>
+<footer class="small" style="padding:8px 0 24px">Ads never see your files. They are processed only in this browser tab.</footer>
+</main>
+<script type="module" src="/src/main.js"></script></body></html>
